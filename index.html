@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050612" />
+    <meta name="description" content="Lexter B. Espero's portfolio: developer profile, MediBox project, skills, and contact details." />
+    <title>Lexter B. Espero | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="showcase.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="space-backdrop" aria-hidden="true">
+      <div class="nebula nebula-purple"></div>
+      <div class="nebula nebula-blue"></div>
+      <div class="milky-way"></div>
+      <div class="space-stars space-stars-far"></div>
+      <div class="space-stars space-stars-mid"></div>
+      <div class="space-stars space-stars-near"></div>
+      <div class="planet-scene"><span class="space-planet"></span></div>
+      <span class="shooting-star"></span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Lexter B. Espero home"><span class="brand-mark">LE</span><span>Lexter</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-shade"></div>
+        <div class="hero-code-backdrop" aria-hidden="true">
+          <pre class="code-stream"><span class="code-comment">// lexter.dev</span>
+<span class="code-keyword">const</span> developer = {
+  name: <span class="code-string">"Lexter B. Espero"</span>,
+  location: <span class="code-string">"Caloocan City"</span>,
+  skills: [<span class="code-string">"Flutter"</span>, <span class="code-string">"Dart"</span>],
+  project: <span class="code-string">"MediBox"</span>
+};
+
+<span class="code-keyword">function</span> build(idea) {
+  <span class="code-keyword">return</span> idea.create();
+}
+
+<span class="code-keyword">while</span> (curious) {
+  learn();
+  buildSomethingMeaningful();
+}
+
+<span class="code-comment">// keep iterating</span>
+developer.create(<span class="code-string">"something meaningful"</span>);
+<span class="code-keyword">const</span> nextIdea = explore();
+build(nextIdea);</pre>
+          <pre class="code-stream"><span class="code-comment">// medibox.dart</span>
+<span class="code-keyword">class</span> MediBox {
+  <span class="code-keyword">final</span> String name;
+  <span class="code-keyword">final</span> List&lt;String&gt; tools;
+
+  MediBox({
+    <span class="code-keyword">required this</span>.name,
+    <span class="code-keyword">required this</span>.tools,
+  });
+
+  <span class="code-keyword">void</span> start() {
+    <span class="code-keyword">for</span> (<span class="code-keyword">final</span> tool <span class="code-keyword">in</span> tools) {
+      tool.initialize();
+    }
+  }
+}
+
+<span class="code-comment">// keep learning</span>
+<span class="code-keyword">void</span> improve() {
+  learn();
+  build();
+}</pre>
+          <pre class="code-stream"><span class="code-comment">// keep_learning.js</span>
+<span class="code-keyword">const</span> toolkit = [
+  <span class="code-string">"Flutter"</span>,
+  <span class="code-string">"Dart"</span>,
+  <span class="code-string">"AutoCAD"</span>,
+  <span class="code-string">"Electronics"</span>
+];
+
+<span class="code-keyword">async function</span> explore() {
+  <span class="code-keyword">for</span> (<span class="code-keyword">const</span> skill <span class="code-keyword">of</span> toolkit) {
+    <span class="code-keyword">await</span> practice(skill);
+    <span class="code-keyword">await</span> makeSomething();
+  }
+}
+
+explore();
+<span class="code-keyword">export default</span> explore;</pre>
+        </div>
+        <div class="hero-content">
+          <p class="hero-kicker"><span class="typing-mark">//</span> HELLO, I'M LEXTER</p>
+          <h1 id="hero-title">Lexter<span class="hero-period">.</span></h1>
+          <h2>I build ideas into<br />meaningful <span>solutions.</span></h2>
+          <p class="hero-bio">A passionate Computer Engineering Student who enjoys building projects, learning new technologies, and solving problems through code.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View My Work <span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="https://github.com/lexterbalitorespero-coder" target="_blank" rel="noreferrer">GitHub Profile <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-socials">
+            <a class="social-icon" href="https://github.com/lexterbalitorespero-coder" target="_blank" rel="noreferrer" aria-label="GitHub profile"><span aria-hidden="true">GH</span></a>
+            <a class="social-icon social-mail" href="mailto:lexterbalitorespero@gmail.com" aria-label="Email Lexter">@</a>
+          </div>
+          <div class="hero-location"><span class="location-pin" aria-hidden="true">⌖</span> Currently in Caloocan City</div>
+        </div>
+        <a class="scroll-cue" href="#about" aria-label="Scroll to About Me"><span></span> Scroll to explore</a>
+      </section>
+
+      <section class="section about-section" id="about" aria-labelledby="about-title">
+        <div class="section-topline"><span>01 / ABOUT ME</span><span class="topline-rule"></span><span>GET TO KNOW ME</span></div>
+        <div class="about-layout">
+          <div class="about-heading"><p class="eyebrow">A LITTLE ABOUT ME</p><h2 id="about-title">More than<br />just a <span>student.</span></h2><div class="quote-mark" aria-hidden="true">“</div></div>
+          <div class="about-details"><p class="about-copy">Hi! I’m a Computer Engineering Student who enjoys building projects, learning new technologies, and solving problems through code. I’m always eager to grow my skills, explore new ideas, and collaborate with others to create meaningful and impactful solutions.</p><div class="about-facts"><div><span class="fact-label">BASED IN</span><strong>Caloocan City</strong></div><div><span class="fact-label">SKILLS</span><strong>Flutter · Dart · AutoCAD</strong></div></div></div>
+        </div>
+        <div class="certificate-block" aria-labelledby="certificates-title">
+          <div class="certificate-heading"><h3 class="eyebrow" id="certificates-title">CERTIFICATES</h3><span class="topline-rule"></span><span>ACADEMIC &amp; ENGINEERING</span></div>
+          <div class="certificate-gallery">
+            <figure class="certificate-card"><img src="assets/certificates/image-1792400905012.png" alt="Certificate of participation for the secure networking seminar, March 2026" loading="lazy" /><figcaption>Secure Networking Seminar · March 2026</figcaption></figure>
+            <figure class="certificate-card"><img src="assets/certificates/image-1792400911255.png" alt="Certificate of participation for the Engineering Day IoT seminar, March 2025" loading="lazy" /><figcaption>Engineering Day IoT Seminar · March 2025</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-topline"><span>02 / PROJECTS</span><span class="topline-rule"></span><span>WORK IN PROGRESS</span></div>
+        <div class="section-intro"><div><p class="eyebrow">FEATURED PROJECTS</p><h2 id="projects-title">Projects that solve<br />real <span>problems.</span></h2></div><p>Explore my electronics, floor-planning, and student-app projects.</p></div>
+        <article class="project-feature">
+          <button class="project-image" type="button" data-open-medibox aria-haspopup="dialog" aria-controls="medibox-dialog" aria-label="Open MediBox project photo">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="Electronic components and a circuit board" />
+            <span class="project-image-label">FEATURED PROJECT <b>001</b></span>
+            <span class="project-image-arrow" aria-hidden="true">↗</span>
+          </button>
+          <div class="project-copy"><p class="project-category">ELECTRONICS / PERSONAL PROJECT</p><h3><button class="project-title-button" type="button" data-open-medibox>MediBox</button></h3><p>An electronics project built with electronics tools. Open the project photo or visit the repository for source code and details.</p><div class="project-tags"><span>Electronics tools</span></div><a class="project-cta" href="https://github.com/lexterbalitorespero-coder/espero_porfolio" target="_blank" rel="noreferrer">View source code <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project-feature coohom-feature">
+          <button class="project-image coohom-cover" type="button" data-open-coohom aria-haspopup="dialog" aria-controls="coohom-dialog" aria-label="Open Coohom floor plan photos">
+            <img class="coohom-cover-image" src="assets/floor-plans/image-1792402270455.png" alt="Blue architectural and systems floor plan preview" />
+            <span class="coohom-cover-fallback" hidden>COOHOM FLOOR PLAN<br /><small>Preview image will appear here</small></span>
+            <span class="project-image-label">FLOOR PLAN <b>002</b></span>
+            <span class="project-image-arrow" aria-hidden="true">↗</span>
+          </button>
+          <div class="project-copy"><p class="project-category">FLOOR PLANNING / ELECTRICAL CABLING</p><h3><button class="project-title-button" type="button" data-open-coohom aria-haspopup="dialog" aria-controls="coohom-dialog">Floor Plan and Electrical Cabling</button></h3><p>A multi-floor layout and electrical-cabling plan designed using Coohom.</p><div class="project-tags"><span>Floor Plan</span><span>Electrical Cabling</span><span>Coohom</span></div><button class="project-cta project-open-button" type="button" data-open-coohom aria-haspopup="dialog" aria-controls="coohom-dialog">View project photos <span aria-hidden="true">↗</span></button></div>
+        </article>
+        <article class="project-feature icctskolar-feature">
+          <div class="project-image icctskolar-cover" aria-label="ICCTSKOLAR logo">
+            <img class="icctskolar-logo" src="assets/projects/image-1792411723387.png" alt="ICCTSKOLAR mobile app logo" />
+            <span class="icctskolar-cover-fallback" hidden>ICCTSKOLAR<br /><small>SCHOLARSHIP DISCOVERY · MATCH · APPLY</small></span>
+            <span class="project-image-label">MOBILE APP <b>003</b></span>
+          </div>
+          <div class="project-copy"><p class="project-category">MOBILE APP / SCHOLARSHIP MATCHING</p><h3>ICCTSKOLAR</h3><p>ICCTSKOLAR is a mobile app that helps ICCT Colleges students find scholarships, check which ones they may qualify for, and keep track of their requirements, deadlines, and application progress in one place.</p><div class="project-tags"><span>Scholarship Discovery</span><span>Eligibility Matching</span><span>Application Tracking</span></div></div>
+        </article>
+        <dialog class="project-dialog" id="medibox-dialog" aria-labelledby="medibox-dialog-title">
+          <div class="dialog-heading"><div><p class="eyebrow">PROJECT PHOTO</p><h2 id="medibox-dialog-title">MediBox</h2></div><button class="dialog-close" type="button" aria-label="Close project photo">×</button></div>
+          <figure class="dialog-figure">
+            <img class="medibox-photo" src="medibox-photo.png" alt="Project group photo supplied for MediBox" />
+            <figcaption class="photo-unavailable" hidden>The attached photo isn't in the project folder yet. Add it as <code>medibox-photo.png</code> to display it here.</figcaption>
+          </figure>
+          <a class="project-cta" href="https://github.com/lexterbalitorespero-coder/espero_porfolio" target="_blank" rel="noreferrer">View source code <span aria-hidden="true">↗</span></a>
+        </dialog>
+        <dialog class="project-dialog coohom-dialog" id="coohom-dialog" aria-labelledby="coohom-dialog-title">
+          <div class="dialog-heading"><div><p class="eyebrow">COOHOM PROJECT</p><h2 id="coohom-dialog-title">Floor Plan and Electrical Cabling</h2></div><button class="dialog-close coohom-dialog-close" type="button" aria-label="Close project photos">×</button></div>
+          <div class="coohom-gallery">
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401866030.png" alt="First floor plan"><figcaption>First Floor · Plan</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401877029.png" alt="First floor ceiling plan"><figcaption>First Floor · Ceiling</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401884180.png" alt="Second floor plan"><figcaption>Second Floor · Plan</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401892592.png" alt="Second floor ceiling plan"><figcaption>Second Floor · Ceiling</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401899311.png" alt="Third floor plan"><figcaption>Third Floor · Plan</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+            <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401905271.png" alt="Third floor ceiling plan"><figcaption>Third Floor · Ceiling</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
+          </div>
+        </dialog>
+      </section>
+
+      <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+        <div class="section-topline"><span>03 / TOOLBOX</span><span class="topline-rule"></span><span>ALWAYS LEARNING</span></div>
+        <div class="section-intro"><div><p class="eyebrow">SKILLS THAT BUILD POSSIBILITIES</p><h2 id="skills-title">Tools I use to<br /><span>make things.</span></h2></div><p>A growing toolkit for turning ideas into working projects.</p></div>
+        <div class="skill-filters" role="group" aria-label="Filter skills">
+          <button class="skill-filter is-active" type="button" data-filter="all" aria-pressed="true">All skills</button>
+          <button class="skill-filter" type="button" data-filter="development" aria-pressed="false">Development</button>
+          <button class="skill-filter" type="button" data-filter="tools" aria-pressed="false">Design &amp; hardware</button>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-item" data-category="development"><span class="skill-symbol dart-symbol"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" alt="Dart logo" loading="lazy" /></span><div><p>PROGRAMMING LANGUAGE</p><h3>Dart</h3></div><span class="skill-arrow" aria-hidden="true">↗</span></article>
+          <article class="skill-item" data-category="development"><span class="skill-symbol flutter-symbol"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter logo" loading="lazy" /></span><div><p>MOBILE FRAMEWORK</p><h3>Flutter</h3></div><span class="skill-arrow" aria-hidden="true">↗</span></article>
+          <article class="skill-item" data-category="tools"><span class="skill-symbol autocad-symbol"><img src="https://cdn.simpleicons.org/autodesk" alt="Autodesk logo" loading="lazy" /></span><div><p>DESIGN &amp; CAD</p><h3>AutoCAD</h3></div><span class="skill-arrow" aria-hidden="true">↗</span></article>
+          <article class="skill-item" data-category="tools"><span class="skill-symbol hardware-symbol"><img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/circuit-board.svg" alt="Circuit board icon" loading="lazy" /></span><div><p>HARDWARE</p><h3>Electronics tools</h3></div><span class="skill-arrow" aria-hidden="true">↗</span></article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="section-topline"><span>04 / CONTACT</span><span class="topline-rule"></span><span>LET'S CONNECT</span></div>
+        <div class="contact-layout">
+          <div class="contact-copy"><p class="eyebrow">HAVE A PROJECT IN MIND?</p><h2 id="contact-title">Let's build<br />something <span>together.</span></h2><p>Have a project idea or want to connect? Send me a message and let's start a conversation.</p><div class="direct-links"><a href="mailto:lexterbalitorespero@gmail.com"><span>EMAIL</span> lexterbalitorespero@gmail.com <b aria-hidden="true">↗</b></a><a href="https://github.com/lexterbalitorespero-coder" target="_blank" rel="noreferrer"><span>GITHUB</span> github.com/lexterbalitorespero-coder <b aria-hidden="true">↗</b></a><p><span>LOCATION</span> Caloocan City</p></div></div>
+          <form class="contact-form" id="contact-form">
+            <p class="form-heading">SEND A MESSAGE <span>///</span></p>
+            <label for="sender-name">Your name</label><input id="sender-name" name="name" autocomplete="name" required />
+            <label for="sender-email">Your email</label><input id="sender-email" name="email" type="email" autocomplete="email" required />
+            <label for="message-subject">Subject</label><input id="message-subject" name="subject" required />
+            <label for="message-body">Message</label><textarea id="message-body" name="message" rows="4" required></textarea>
+            <button class="button button-primary send-button" type="submit">Send Message <span aria-hidden="true">→</span></button>
+            <p class="form-note">Opens your email app to send this message.</p>
+          </form>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <a class="brand footer-brand" href="#top"><span class="brand-mark">LE</span><span>Lexter</span></a>
+        <p>Building projects and solving problems through code.</p>
+        <nav aria-label="Footer navigation"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav>
+        <span class="copyright">© <span id="current-year">2026</span> Lexter B. Espero</span>
+      </footer>
+    </main>
+  </body>
+</html>
