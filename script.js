@@ -1,5 +1,40 @@
 document.querySelector("#current-year").textContent = String(new Date().getFullYear());
 
+const typewriter = document.querySelector(".hero-typewriter");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (typewriter && !prefersReducedMotion) {
+	const segments = Array.from(typewriter.querySelectorAll("[data-typewriter]"));
+	const characters = segments.map((segment) => Array.from(segment.textContent));
+	const characterDelay = 55;
+	const segmentPause = 120;
+	const typingDuration = characters.reduce((duration, segment) => duration + segment.length * characterDelay, 0)
+		+ (segments.length - 1) * segmentPause;
+	const typingStartedAt = performance.now() + 500;
+
+	segments.forEach((segment) => {
+		segment.textContent = "";
+	});
+	typewriter.classList.add("is-typing");
+
+	const updateTypewriter = () => {
+		let elapsed = Math.max(0, performance.now() - typingStartedAt);
+		characters.forEach((segmentCharacters, index) => {
+			const visibleCharacters = Math.max(0, Math.min(segmentCharacters.length, Math.floor(elapsed / characterDelay)));
+			segments[index].textContent = segmentCharacters.slice(0, visibleCharacters).join("");
+			elapsed -= segmentCharacters.length * characterDelay + (index < segments.length - 1 ? segmentPause : 0);
+		});
+
+		if (performance.now() - typingStartedAt >= typingDuration) {
+			typewriter.classList.remove("is-typing");
+			return;
+		}
+		window.setTimeout(updateTypewriter, 30);
+	};
+
+	window.setTimeout(updateTypewriter, 500);
+}
+
 const deterministicRandom = (seed) => {
 	const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
 	return value - Math.floor(value);

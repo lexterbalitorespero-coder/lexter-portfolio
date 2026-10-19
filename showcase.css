@@ -46,7 +46,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero h1 { margin: 0 0 3px; color: #fff; font: 800 clamp(72px, 10vw, 118px)/.98 var(--display); letter-spacing: 0; }
 .hero-period { color: var(--violet); }
 .hero h2 { margin: 15px 0 17px; color: #f8f6fc; font: 700 clamp(27px, 4vw, 43px)/1.14 var(--display); }
-.hero h2 span, .about-heading h2 span, .section-intro h2 span, .contact-copy h2 span { color: var(--blue); }
+.hero h2 .hero-typewriter-accent, .about-heading h2 span, .section-intro h2 span, .contact-copy h2 span { color: var(--blue); }
+.hero-typewriter.is-typing::after { display: inline-block; width: 2px; height: .88em; margin-left: .1em; background: currentColor; content: ""; vertical-align: -.08em; animation: typewriter-caret .8s steps(1, end) infinite; }
 .hero-bio { max-width: 520px; margin: 0; color: #d0cbd8; font-size: 14px; line-height: 1.8; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 26px; }
 .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 0 20px; border: 1px solid transparent; border-radius: 10px; font: 700 12px var(--display); transition: transform .2s ease, background .2s ease, border-color .2s ease; cursor: pointer; }
@@ -188,6 +189,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .copyright { grid-column: 1 / -1; justify-self: end; color: #716b7b; font: 400 9px var(--mono); }
 @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes code-drift { from { transform: translateY(18px); } to { transform: translateY(-30px); } }
+@keyframes typewriter-caret { 50% { opacity: 0; } }
 
 @media (max-width: 760px) {
   .site-header { min-height: 66px; padding-inline: 22px; }
@@ -272,7 +274,7 @@ body { color: var(--text); background: #0A241B; }
 .code-string { color: #8ee2bd; }
 .hero-kicker, .eyebrow { color: #9EECFF; }
 .hero h1, .hero h2 { color: #f1fbf6; }
-.hero h2 span { color: #9EECFF; }
+  .hero h2 .hero-typewriter-accent { color: #9EECFF; }
 .hero-bio, .hero-location, .scroll-cue { color: #c3ddd0; }
 .button-primary { color: #06221b; background: linear-gradient(110deg, #9EECFF, #5cc6e3); box-shadow: 0 9px 30px #54c7df40; }
 .button-primary:hover { background: linear-gradient(110deg, #b7f2ff, #74d7ed); }
@@ -353,7 +355,7 @@ main { position: relative; z-index: 1; }
 .hero h1, .hero h2 { color: #f4f1ff; }
 .hero h1 { text-shadow: 0 0 18px #9EECFF38, 0 0 46px #7caaff24, 0 2px 18px #03040bbb; }
 .hero h1 { text-shadow: 0 0 18px #9EECFF2b, 0 0 46px #7caaff1a; }
-.hero h2 span, .about-heading h2 span, .section-intro h2 span, .contact-copy h2 span { color: #9EECFF; }
+.hero h2 .hero-typewriter-accent, .about-heading h2 span, .section-intro h2 span, .contact-copy h2 span { color: #9EECFF; }
 .hero-bio, .hero-location, .scroll-cue { color: #d1d1e5; }
 .button-primary { color: #08101d; background: linear-gradient(110deg, #9EECFF, #7caaff); box-shadow: 0 9px 32px #6e91ff40; }
 .button-primary:hover { background: linear-gradient(110deg, #bdF4ff, #9bbcff); }
