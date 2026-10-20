@@ -30,17 +30,20 @@ const playSound = (sound) => {
 	if (!soundEnabled || !soundContext) return;
 
 	if (sound === "type") {
-		playTone({ frequency: 1250, endFrequency: 970, duration: 0.024, volume: 0.045, type: "square" });
+		playTone({ frequency: 1480, endFrequency: 1120, duration: 0.035, volume: 0.035, type: "sine" });
 	} else if (sound === "click") {
-		playTone({ frequency: 1050, endFrequency: 720, duration: 0.055, volume: 0.09, type: "triangle" });
+		playTone({ frequency: 920, endFrequency: 680, duration: 0.09, volume: 0.065, type: "triangle" });
+		playTone({ frequency: 1380, endFrequency: 1120, duration: 0.07, volume: 0.025, type: "sine", startAt: 0.018 });
 	} else if (sound === "scan") {
-		playTone({ frequency: 360, endFrequency: 960, duration: 0.3, volume: 0.065, type: "sine" });
+		playTone({ frequency: 260, endFrequency: 1080, duration: 0.38, volume: 0.06, type: "sine" });
+		playTone({ frequency: 520, endFrequency: 1500, duration: 0.3, volume: 0.022, type: "sine", startAt: 0.035 });
 	} else if (sound === "glitch") {
-		playTone({ frequency: 760, endFrequency: 140, duration: 0.08, volume: 0.085, type: "sawtooth" });
-		playTone({ frequency: 210, endFrequency: 620, duration: 0.11, volume: 0.065, type: "square", startAt: 0.045 });
+		playTone({ frequency: 180, endFrequency: 520, duration: 0.16, volume: 0.065, type: "triangle" });
+		playTone({ frequency: 780, endFrequency: 320, duration: 0.13, volume: 0.045, type: "sine", startAt: 0.025 });
+		playTone({ frequency: 1200, endFrequency: 640, duration: 0.09, volume: 0.025, type: "sine", startAt: 0.06 });
 	} else if (sound === "grant") {
-		playTone({ frequency: 660, duration: 0.18, volume: 0.09, type: "sine" });
-		playTone({ frequency: 880, duration: 0.24, volume: 0.09, type: "sine", startAt: 0.11 });
+		playTone({ frequency: 523, endFrequency: 784, duration: 0.28, volume: 0.065, type: "sine" });
+		playTone({ frequency: 1046, endFrequency: 1568, duration: 0.38, volume: 0.035, type: "sine", startAt: 0.06 });
 	}
 };
 
