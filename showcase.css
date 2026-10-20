@@ -481,9 +481,3 @@ main { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .section.is-reveal-pending, .section.is-revealed { opacity: 1; transform: none; transition: none; }
 }
-
-.about-details {
-  background-image: linear-gradient(110deg, rgba(5, 9, 20, .82), rgba(7, 18, 32, .74)), url("assets/lexter-profile.png");
-  background-position: center, center 35%;
-  background-size: cover;
-}
