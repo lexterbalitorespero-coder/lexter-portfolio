@@ -394,3 +394,16 @@ const updateIcctskolarCover = () => {
 icctskolarLogo.addEventListener("load", updateIcctskolarCover);
 icctskolarLogo.addEventListener("error", updateIcctskolarCover);
 if (icctskolarLogo.complete) updateIcctskolarCover();
+
+const aboutDetails = document.querySelector(".about-details");
+let aboutDetailsAnimationTimer;
+
+aboutDetails.addEventListener("pointerup", () => {
+	window.clearTimeout(aboutDetailsAnimationTimer);
+	aboutDetails.classList.remove("is-interacting");
+	void aboutDetails.offsetWidth;
+	aboutDetails.classList.add("is-interacting");
+	aboutDetailsAnimationTimer = window.setTimeout(() => {
+		aboutDetails.classList.remove("is-interacting");
+	}, 700);
+});
