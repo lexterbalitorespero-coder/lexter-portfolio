@@ -493,7 +493,14 @@ main { position: relative; z-index: 1; }
 .about-portrait-front { transform: rotateY(0deg); }
 .about-portrait { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
 .about-portrait-back { display: grid; align-content: center; justify-items: center; gap: 14px; padding: 24px; transform: rotateY(180deg); color: #eafaff; background: radial-gradient(ellipse at 50% 20%, #087d9c66, transparent 58%), linear-gradient(145deg, #102b3b, #080d18); font: 500 clamp(11px, 1.3vw, 15px)/1.6 var(--mono); letter-spacing: .12em; text-align: center; }
-.about-portrait-back span:first-child { color: #9EECFF; font-size: clamp(13px, 1.7vw, 19px); font-weight: 700; }
+.about-portrait-back > .binary-streams { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: space-around; overflow: hidden; opacity: .72; pointer-events: none; }
+.binary-streams span { position: relative; z-index: 0; flex: 0 0 auto; color: #51d9f4a8; font: 500 clamp(10px, 1vw, 13px)/1 var(--mono); letter-spacing: .32em; writing-mode: vertical-rl; text-orientation: upright; white-space: nowrap; animation: binary-fall 9s linear infinite; }
+.binary-streams span:nth-child(2n) { animation-delay: -3s; animation-duration: 11s; }
+.binary-streams span:nth-child(3n) { animation-delay: -6s; animation-duration: 13s; }
+.about-portrait-back::after { position: absolute; inset: 0; z-index: 1; content: ""; background: radial-gradient(ellipse at center, #08111ec9 5%, #08111e65 58%, #08111e20); pointer-events: none; }
+.about-portrait-back span { position: relative; z-index: 2; }
+.about-portrait-back > span:nth-child(2) { color: #9EECFF; font-size: clamp(13px, 1.7vw, 19px); font-weight: 700; }
+@keyframes binary-fall { from { transform: translateY(-34%); } to { transform: translateY(34%); } }
 @media (hover: hover) and (pointer: fine) {
   .about-portrait-card:hover .about-portrait-card-inner,
   .about-portrait-card:focus-visible .about-portrait-card-inner { transform: rotateY(180deg); }
@@ -502,4 +509,5 @@ main { position: relative; z-index: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .about-portrait-card-inner { transition-duration: .01ms; }
+  .binary-streams span { animation: none; }
 }
