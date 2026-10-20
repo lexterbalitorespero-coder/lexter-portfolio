@@ -56,26 +56,62 @@ const startAmbientMusic = () => {
 		[116.54, 174.61, 220, 293.66],
 		[87.31, 174.61, 220, 261.63]
 	];
+	const sequence = [293.66, 349.23, 440, 523.25, 587.33, 523.25, 440, 349.23];
+	const sequencePattern = [0, 2, 4, 2, 1, 3, 5, 3, 0, 2, 4, 6, 5, 3, 1, 3];
 	let chordIndex = 0;
+	let sequenceStep = 0;
 
 	musicGain.gain.setValueAtTime(0.0001, soundContext.currentTime);
-	musicGain.gain.exponentialRampToValueAtTime(0.2, soundContext.currentTime + 2);
+	musicGain.gain.exponentialRampToValueAtTime(0.16, soundContext.currentTime + 2);
 	musicGain.connect(soundContext.destination);
 
 	progression[0].forEach((frequency, index) => {
 		const voiceGain = soundContext.createGain();
-		voiceGain.gain.value = index === 0 ? 0.18 : 0.12;
+		voiceGain.gain.value = index === 0 ? 0.14 : 0.07;
 		voiceGain.connect(musicGain);
 
 		[frequency - 0.7, frequency + 0.7].forEach((detunedFrequency) => {
 			const oscillator = soundContext.createOscillator();
-			oscillator.type = "sine";
+			oscillator.type = index === 0 ? "triangle" : "sawtooth";
 			oscillator.frequency.value = detunedFrequency;
 			oscillator.connect(voiceGain);
 			oscillator.start();
 			oscillators.push(oscillator);
 		});
 	});
+
+	const sequenceTimer = window.setInterval(() => {
+		const startTime = soundContext.currentTime + 0.02;
+		const note = soundContext.createOscillator();
+		const noteGain = soundContext.createGain();
+		const noteFrequency = sequence[sequencePattern[sequenceStep % sequencePattern.length]];
+		note.type = "triangle";
+		note.frequency.setValueAtTime(noteFrequency, startTime);
+		noteGain.gain.setValueAtTime(0.0001, startTime);
+		noteGain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.012);
+		noteGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.19);
+		note.connect(noteGain);
+		noteGain.connect(musicGain);
+		note.start(startTime);
+		note.stop(startTime + 0.2);
+
+		if (sequenceStep % 4 === 0) {
+			const bass = soundContext.createOscillator();
+			const bassGain = soundContext.createGain();
+			bass.type = "sine";
+			bass.frequency.setValueAtTime(110, startTime);
+			bass.frequency.exponentialRampToValueAtTime(48, startTime + 0.16);
+			bassGain.gain.setValueAtTime(0.0001, startTime);
+			bassGain.gain.exponentialRampToValueAtTime(0.2, startTime + 0.008);
+			bassGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.18);
+			bass.connect(bassGain);
+			bassGain.connect(musicGain);
+			bass.start(startTime);
+			bass.stop(startTime + 0.19);
+		}
+
+		sequenceStep += 1;
+	}, 250);
 
 	const progressionTimer = window.setInterval(() => {
 		chordIndex = (chordIndex + 1) % progression.length;
@@ -89,6 +125,7 @@ const startAmbientMusic = () => {
 	}, 8000);
 
 	return () => {
+		window.clearInterval(sequenceTimer);
 		window.clearInterval(progressionTimer);
 		const stopTime = soundContext.currentTime + 0.7;
 		musicGain.gain.cancelScheduledValues(soundContext.currentTime);
