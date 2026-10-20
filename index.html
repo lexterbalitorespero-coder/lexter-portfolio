@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="showcase.css?v=20261020-binary-photo-transparent" />
-    <script src="script.js?v=20261020-about-portrait-flip" defer></script>
+    <link rel="stylesheet" href="showcase.css?v=20261020-click-feedback" />
+    <script src="script.js?v=20261020-click-feedback" defer></script>
   </head>
   <body>
     <div class="space-backdrop" aria-hidden="true">
@@ -237,6 +237,30 @@ explore();
         <span class="copyright">© <span id="current-year">2026</span> Lexter B. Espero</span>
       </footer>
     </main>
+    <template id="click-feedback-template">
+      <div class="click-feedback" aria-hidden="true">
+        <div class="click-feedback__burst">
+          <span class="click-feedback__ring"></span>
+          <span class="click-feedback__dot"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 0deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 45deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 90deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 135deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 180deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 225deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 270deg"></span>
+          <span class="click-feedback__spark" style="--spark-angle: 315deg"></span>
+        </div>
+        <svg class="click-feedback__mouse" viewBox="0 0 52 74" focusable="false">
+          <path class="click-feedback__shell" d="M26 2C13.85 2 6 10.63 6 23v26c0 13.39 8.06 23 20 23s20-9.61 20-23V23C46 10.63 38.15 2 26 2Z" />
+          <path class="click-feedback__button click-feedback__button--left" d="M26 4v27H8V23C8 11.83 14.45 4.55 26 4Z" />
+          <path class="click-feedback__button click-feedback__button--right" d="M26 4c11.55.55 18 7.83 18 19v8H26V4Z" />
+          <path class="click-feedback__divider" d="M26 4v36" />
+          <path class="click-feedback__shell" d="M6.5 31h39" />
+          <rect class="click-feedback__button click-feedback__button--middle" x="23.5" y="12" width="5" height="13" rx="2.5" />
+        </svg>
+      </div>
+    </template>
     <button class="sound-toggle" type="button" aria-label="Turn background music and sound effects on" aria-pressed="false">Music: OFF</button>
   </body>
 </html>

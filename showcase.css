@@ -507,7 +507,87 @@ main { position: relative; z-index: 1; }
 }
 .about-portrait-card.is-flipped .about-portrait-card-inner { transform: rotateY(180deg); }
 
+.click-feedback {
+  --click-color: #35e7ff;
+  position: fixed;
+  z-index: 30;
+  width: 0;
+  height: 0;
+  color: var(--click-color);
+  pointer-events: none;
+}
+.click-feedback[data-button="middle"] { --click-color: #ffd166; }
+.click-feedback[data-button="right"] { --click-color: #b28cff; }
+.click-feedback__burst { position: absolute; inset: 0; }
+.click-feedback__ring {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 12px currentColor;
+  animation: click-ring .58s cubic-bezier(.12,.68,.25,1) both;
+}
+.click-feedback__dot {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 7px 3px currentColor, 0 0 18px currentColor;
+  animation: click-dot .48s ease-out both;
+}
+.click-feedback__spark {
+  position: absolute;
+  top: -4px;
+  left: -1px;
+  width: 2px;
+  height: 8px;
+  border-radius: 2px;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: click-spark .42s cubic-bezier(.14,.72,.32,1) both;
+  transform: rotate(var(--spark-angle)) translateY(-22px) scaleY(.2);
+}
+.click-feedback__mouse {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  width: 46px;
+  height: 66px;
+  overflow: visible;
+  filter: drop-shadow(0 3px 10px #0009);
+  animation: click-mouse-in .16s ease-out both;
+}
+.click-feedback[data-horizontal="left"] .click-feedback__mouse { right: 16px; left: auto; }
+.click-feedback[data-vertical="top"] .click-feedback__mouse { top: auto; bottom: 18px; }
+.click-feedback__shell, .click-feedback__divider {
+  fill: #0b1524ec;
+  stroke: #effaff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+.click-feedback__divider { fill: none; stroke: #effaffb3; }
+.click-feedback__button { fill: #ffffff13; stroke: #effaffb3; stroke-width: 1; }
+.click-feedback[data-button="left"] .click-feedback__button--left,
+.click-feedback[data-button="middle"] .click-feedback__button--middle,
+.click-feedback[data-button="right"] .click-feedback__button--right {
+  fill: var(--click-color);
+  stroke: #fff;
+  filter: drop-shadow(0 0 5px var(--click-color));
+}
+@keyframes click-ring { from { opacity: .95; transform: scale(.25); } to { opacity: 0; transform: scale(5.4); } }
+@keyframes click-dot { 0%, 55% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(.4); } }
+@keyframes click-spark { 0% { opacity: 0; transform: rotate(var(--spark-angle)) translateY(-20px) scaleY(.2); } 22% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--spark-angle)) translateY(-43px) scaleY(1); } }
+@keyframes click-mouse-in { from { opacity: 0; transform: scale(.72) translateY(4px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
 @media (prefers-reduced-motion: reduce) {
   .about-portrait-card-inner { transition-duration: .01ms; }
   .binary-streams span { animation: none; }
+  .click-feedback__ring, .click-feedback__dot, .click-feedback__spark, .click-feedback__mouse { animation-duration: .01ms; }
 }

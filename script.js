@@ -180,13 +180,50 @@ attemptAutoplay();
 
 document.addEventListener("click", (event) => {
 	const target = event.target.closest("a, button");
-	if (!target || target === soundToggle) return;
+	if (!target) {
+		if (event.detail !== 0) playSound("click");
+		return;
+	}
+	if (target === soundToggle) return;
 
 	if (target.matches("[data-open-medibox], [data-open-coohom], [data-open-certificate]")) {
 		playSound("glitch");
 	} else if (!target.matches(".dialog-close, .coohom-dialog-close, .certificate-dialog-close, .send-button")) {
 		playSound("click");
 	}
+});
+
+const clickFeedbackTemplate = document.querySelector("#click-feedback-template");
+const showClickFeedback = (event, button) => {
+	if (event.detail === 0) return;
+
+	const feedback = clickFeedbackTemplate.content.firstElementChild.cloneNode(true);
+	feedback.dataset.button = button;
+	feedback.dataset.horizontal = event.clientX > window.innerWidth - 76 ? "left" : "right";
+	feedback.dataset.vertical = event.clientY > window.innerHeight - 100 ? "top" : "bottom";
+	feedback.style.left = `${event.clientX}px`;
+	feedback.style.top = `${event.clientY}px`;
+
+	const target = event.target instanceof Element ? event.target : null;
+	const openDialog = target?.closest("dialog[open]");
+	(openDialog ?? document.body).append(feedback);
+	window.setTimeout(() => feedback.remove(), 720);
+};
+
+document.addEventListener("click", (event) => {
+	if (event.button === 0) showClickFeedback(event, "left");
+});
+
+document.addEventListener("auxclick", (event) => {
+	if (event.button !== 1) return;
+	showClickFeedback(event, "middle");
+	playSound("click");
+});
+
+document.addEventListener("contextmenu", (event) => {
+	if (event.button !== 2) return;
+	showClickFeedback(event, "right");
+	playSound("click");
 });
 
 if (typewriter && !prefersReducedMotion) {
