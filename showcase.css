@@ -21,6 +21,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .site-header { position: absolute; z-index: 5; inset: 0 0 auto; min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 max(34px, calc((100vw - 1260px) / 2)); border-bottom: 1px solid #9EECFF24; background: #07131b66; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 .brand { display: inline-flex; align-items: center; gap: 11px; color: #fff; font-size: 15px; font-weight: 800; }
 .brand-mark { width: 33px; height: 33px; display: grid; place-items: center; border: 1px solid #9EECFF70; border-radius: 10px; color: #9EECFF; background: #9EECFF20; font: 700 10px var(--mono); }
+.brand-photo { width: 38px; height: 38px; display: block; border-radius: 9px; object-fit: cover; object-position: center; }
 .site-nav { position: absolute; top: calc(100% + 12px); right: max(34px, calc((100vw - 1260px) / 2)); display: none; flex-direction: column; gap: 0; width: min(260px, calc(100vw - 36px)); padding: 8px 15px; border: 1px solid #ffffff24; border-radius: 12px; color: #ded9ec; background: #100e1bf2; box-shadow: 0 18px 40px #0007; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); font-size: 12px; }
 .site-nav.is-open { display: flex; }
 .site-nav a { padding: 12px 5px; border-bottom: 1px solid #ffffff12; }
