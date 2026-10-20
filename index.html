@@ -126,9 +126,9 @@ explore();
         <div class="certificate-block" aria-labelledby="certificates-title">
           <div class="certificate-heading"><h3 class="eyebrow" id="certificates-title">CERTIFICATES</h3><span class="topline-rule"></span><span>ACADEMIC &amp; ENGINEERING</span></div>
           <div class="certificate-gallery">
-            <figure class="certificate-card"><img src="assets/certificates/image-1792400905012.png" alt="Certificate of participation for the secure networking seminar, March 2026" loading="lazy" /><figcaption>Secure Networking Seminar · March 2026</figcaption></figure>
-            <figure class="certificate-card"><img src="assets/certificates/image-1792400911255.png" alt="Certificate of participation for the Engineering Day IoT seminar, March 2025" loading="lazy" /><figcaption>Engineering Day IoT Seminar · March 2025</figcaption></figure>
-            <figure class="certificate-card"><img src="assets/certificates/ies-membership-certificate-2025.png" alt="Certificate of membership in the ICCT Engineering Society for Lexter B. Espero, Third Trimester, Academic Year 2024–2025" loading="lazy" /><figcaption>ICCT Engineering Society Membership · 2024–2025</figcaption></figure>
+            <button class="certificate-card" type="button" data-open-certificate="certificate-dialog-1" aria-label="View Secure Networking Seminar certificate full screen"><img src="assets/certificates/image-1792400905012.png" alt="" loading="lazy" /><span class="certificate-caption">Secure Networking Seminar · March 2026</span></button>
+            <button class="certificate-card" type="button" data-open-certificate="certificate-dialog-2" aria-label="View Engineering Day IoT Seminar certificate full screen"><img src="assets/certificates/image-1792400911255.png" alt="" loading="lazy" /><span class="certificate-caption">Engineering Day IoT Seminar · March 2025</span></button>
+            <button class="certificate-card" type="button" data-open-certificate="certificate-dialog-3" aria-label="View ICCT Engineering Society Membership certificate full screen"><img src="assets/certificates/ies-membership-certificate-2025.png" alt="" loading="lazy" /><span class="certificate-caption">ICCT Engineering Society Membership · 2024–2025</span></button>
           </div>
         </div>
       </section>
@@ -179,6 +179,18 @@ explore();
             <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401899311.png" alt="Third floor plan"><figcaption>Third Floor · Plan</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
             <figure class="coohom-photo-item"><img class="coohom-photo" src="assets/floor-plans/image-1792401905271.png" alt="Third floor ceiling plan"><figcaption>Third Floor · Ceiling</figcaption><p class="coohom-photo-missing" hidden>Photo file not found</p></figure>
           </div>
+        </dialog>
+        <dialog class="certificate-dialog" id="certificate-dialog-1" aria-label="Secure Networking Seminar certificate">
+          <button class="dialog-close certificate-dialog-close" type="button" aria-label="Close certificate">×</button>
+          <img src="assets/certificates/image-1792400905012.png" alt="Certificate of participation for the secure networking seminar, March 2026" />
+        </dialog>
+        <dialog class="certificate-dialog" id="certificate-dialog-2" aria-label="Engineering Day IoT Seminar certificate">
+          <button class="dialog-close certificate-dialog-close" type="button" aria-label="Close certificate">×</button>
+          <img src="assets/certificates/image-1792400911255.png" alt="Certificate of participation for the Engineering Day IoT seminar, March 2025" />
+        </dialog>
+        <dialog class="certificate-dialog" id="certificate-dialog-3" aria-label="ICCT Engineering Society Membership certificate">
+          <button class="dialog-close certificate-dialog-close" type="button" aria-label="Close certificate">×</button>
+          <img src="assets/certificates/ies-membership-certificate-2025.png" alt="Certificate of membership in the ICCT Engineering Society for Lexter B. Espero, Third Trimester, Academic Year 2024–2025" />
         </dialog>
       </section>
 

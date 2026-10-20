@@ -90,9 +90,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .certificate-heading { display: flex; align-items: center; gap: 13px; margin-bottom: 17px; color: #797389; font: 400 9px var(--mono); letter-spacing: .08em; }
 .certificate-heading .eyebrow { margin: 0; white-space: nowrap; }
 .certificate-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
-.certificate-card { min-width: 0; overflow: hidden; margin: 0; border: 1px solid #9EECFF35; border-radius: 10px; background: #101f2b; box-shadow: inset 0 1px #d8f8ff12, 0 16px 36px #03070a55; }
+.certificate-card { min-width: 0; overflow: hidden; margin: 0; padding: 0; border: 1px solid #9EECFF35; border-radius: 10px; color: inherit; background: #101f2b; box-shadow: inset 0 1px #d8f8ff12, 0 16px 36px #03070a55; text-align: left; cursor: zoom-in; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.certificate-card:hover { transform: translateY(-3px); border-color: #9EECFFaa; box-shadow: inset 0 1px #d8f8ff12, 0 0 22px #9EECFF28, 0 16px 36px #03070a55; }
 .certificate-card img { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: contain; background: #f4f3f2; }
-.certificate-card figcaption { min-height: 43px; display: flex; align-items: center; padding: 10px 12px; color: #cfc4e5; font: 400 9px/1.5 var(--mono); }
+.certificate-caption { min-height: 43px; display: flex; align-items: center; padding: 10px 12px; color: #cfc4e5; font: 400 9px/1.5 var(--mono); }
+.certificate-dialog { position: fixed; width: min(96vw, 1400px); height: min(96vh, 1100px); max-width: none; max-height: none; overflow: hidden; padding: 48px 20px 20px; border: 1px solid #9EECFF66; border-radius: 14px; color: var(--text); background: #080b18f5; box-shadow: 0 25px 100px #000c; }
+.certificate-dialog[open] { display: grid; place-items: center; }
+.certificate-dialog::backdrop { background: #03040bdc; backdrop-filter: blur(9px); }
+.certificate-dialog img { width: 100%; height: 100%; object-fit: contain; }
+.certificate-dialog-close { position: absolute; z-index: 1; top: 10px; right: 10px; }
 .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 32px; padding-top: 24px; border-top: 1px solid #282538; }
 .stat-strip div { display: grid; gap: 5px; padding-left: 22px; border-left: 1px solid #393249; }
 .stat-strip div:first-child { padding-left: 0; border-left: 0; }

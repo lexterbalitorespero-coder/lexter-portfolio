@@ -182,9 +182,9 @@ document.addEventListener("click", (event) => {
 	const target = event.target.closest("a, button");
 	if (!target || target === soundToggle) return;
 
-	if (target.matches("[data-open-medibox], [data-open-coohom]")) {
+	if (target.matches("[data-open-medibox], [data-open-coohom], [data-open-certificate]")) {
 		playSound("glitch");
-	} else if (!target.matches(".dialog-close, .coohom-dialog-close, .send-button")) {
+	} else if (!target.matches(".dialog-close, .coohom-dialog-close, .certificate-dialog-close, .send-button")) {
 		playSound("click");
 	}
 });
@@ -371,6 +371,21 @@ document.querySelectorAll(".coohom-photo").forEach((photo) => {
 	photo.addEventListener("load", updatePhotoAvailability);
 	photo.addEventListener("error", updatePhotoAvailability);
 	if (photo.complete) updatePhotoAvailability();
+});
+
+document.querySelectorAll("[data-open-certificate]").forEach((trigger) => {
+	const certificateDialog = document.querySelector(`#${trigger.dataset.openCertificate}`);
+	trigger.setAttribute("aria-haspopup", "dialog");
+	trigger.setAttribute("aria-controls", certificateDialog.id);
+	trigger.addEventListener("click", () => certificateDialog.showModal());
+	certificateDialog.querySelector(".certificate-dialog-close").addEventListener("click", () => certificateDialog.close());
+	certificateDialog.addEventListener("close", () => {
+		playSound("click");
+		trigger.focus();
+	});
+	certificateDialog.addEventListener("click", (event) => {
+		if (event.target === certificateDialog) certificateDialog.close();
+	});
 });
 
 const updateCoohomCover = () => {
