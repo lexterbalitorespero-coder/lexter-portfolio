@@ -257,6 +257,15 @@ if (aboutCopy && "IntersectionObserver" in window) {
 	aboutCopyObserver.observe(aboutCopy);
 }
 
+const aboutPortraitCard = document.querySelector(".about-portrait-card");
+if (aboutPortraitCard) {
+	aboutPortraitCard.addEventListener("click", (event) => {
+		if (event.detail !== 0 && window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+		const isFlipped = aboutPortraitCard.classList.toggle("is-flipped");
+		aboutPortraitCard.setAttribute("aria-pressed", String(isFlipped));
+	});
+}
+
 const deterministicRandom = (seed) => {
 	const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
 	return value - Math.floor(value);

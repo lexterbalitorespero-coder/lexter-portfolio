@@ -486,4 +486,20 @@ main { position: relative; z-index: 1; }
 }
 
 .about-details { overflow: hidden; padding: 0; }
-.about-portrait { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 35%; }
+.about-portrait-card { position: relative; display: block; width: 100%; aspect-ratio: 1; overflow: hidden; padding: 0; border: 0; border-radius: inherit; color: inherit; background: transparent; perspective: 1000px; text-align: left; cursor: pointer; }
+.about-portrait-card:focus-visible { outline: 2px solid var(--blue); outline-offset: -4px; }
+.about-portrait-card-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.about-portrait-face { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.about-portrait-front { transform: rotateY(0deg); }
+.about-portrait { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.about-portrait-back { display: grid; align-content: center; justify-items: center; gap: 14px; padding: 24px; transform: rotateY(180deg); color: #eafaff; background: radial-gradient(ellipse at 50% 20%, #087d9c66, transparent 58%), linear-gradient(145deg, #102b3b, #080d18); font: 500 clamp(11px, 1.3vw, 15px)/1.6 var(--mono); letter-spacing: .12em; text-align: center; }
+.about-portrait-back span:first-child { color: #9EECFF; font-size: clamp(13px, 1.7vw, 19px); font-weight: 700; }
+@media (hover: hover) and (pointer: fine) {
+  .about-portrait-card:hover .about-portrait-card-inner,
+  .about-portrait-card:focus-visible .about-portrait-card-inner { transform: rotateY(180deg); }
+}
+.about-portrait-card.is-flipped .about-portrait-card-inner { transform: rotateY(180deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .about-portrait-card-inner { transition-duration: .01ms; }
+}
