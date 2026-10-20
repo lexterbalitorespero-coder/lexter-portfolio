@@ -507,6 +507,59 @@ main { position: relative; z-index: 1; }
 }
 .about-portrait-card.is-flipped .about-portrait-card-inner { transform: rotateY(180deg); }
 
+.rocket-cursor {
+  --rocket-color: #35e7ff;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(var(--rocket-x, -100px), var(--rocket-y, -100px), 0);
+  transition: opacity .15s ease;
+}
+.rocket-cursor.is-visible { opacity: 1; }
+.rocket-cursor__ship {
+  position: absolute;
+  top: -39px;
+  left: -30px;
+  width: 60px;
+  height: 78px;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px #35e7ff80);
+  transform: rotate(var(--rocket-angle, -.785rad));
+  transform-origin: 30px 39px;
+}
+.rocket-cursor__body {
+  fill: #d8f9ff;
+  stroke: #35e7ff;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+.rocket-cursor__fin { fill: #42cce8; stroke: #baf6ff; stroke-linejoin: round; stroke-width: 1; }
+.rocket-cursor__window { fill: #101c32; stroke: #35e7ff; stroke-width: 2.5; }
+.rocket-cursor__shine { fill: none; stroke: #fff; stroke-linecap: round; stroke-width: 1.5; }
+.rocket-cursor__flame { transform-box: fill-box; transform-origin: center top; }
+.rocket-cursor__flame--outer { fill: #ff9f43; animation: rocket-flame .18s ease-in-out infinite alternate; }
+.rocket-cursor__flame--inner { fill: #fff2a8; animation: rocket-flame .12s ease-in-out infinite alternate-reverse; }
+.rocket-cursor__trail {
+  position: absolute;
+  top: 20px;
+  left: -3px;
+  width: 6px;
+  height: 12px;
+  border-radius: 50%;
+  background: #35e7ff99;
+  filter: blur(4px);
+  transform: rotate(var(--rocket-angle, -.785rad));
+  transform-origin: 3px -19px;
+  animation: rocket-trail .35s ease-out infinite;
+}
+@keyframes rocket-flame { from { opacity: .7; scale: .82 1; } to { opacity: 1; scale: 1.12 1.15; } }
+@keyframes rocket-trail { 0% { opacity: .75; scale: 1; } 100% { opacity: 0; scale: .3; } }
+
 .click-feedback {
   --click-color: #35e7ff;
   position: fixed;
@@ -553,41 +606,18 @@ main { position: relative; z-index: 1; }
   animation: click-spark .42s cubic-bezier(.14,.72,.32,1) both;
   transform: rotate(var(--spark-angle)) translateY(-22px) scaleY(.2);
 }
-.click-feedback__mouse {
-  position: absolute;
-  top: 18px;
-  left: 16px;
-  width: 46px;
-  height: 66px;
-  overflow: visible;
-  filter: drop-shadow(0 3px 10px #0009);
-  animation: click-mouse-in .16s ease-out both;
-}
-.click-feedback[data-horizontal="left"] .click-feedback__mouse { right: 16px; left: auto; }
-.click-feedback[data-vertical="top"] .click-feedback__mouse { top: auto; bottom: 18px; }
-.click-feedback__shell, .click-feedback__divider {
-  fill: #0b1524ec;
-  stroke: #effaff;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-}
-.click-feedback__divider { fill: none; stroke: #effaffb3; }
-.click-feedback__button { fill: #ffffff13; stroke: #effaffb3; stroke-width: 1; }
-.click-feedback[data-button="left"] .click-feedback__button--left,
-.click-feedback[data-button="middle"] .click-feedback__button--middle,
-.click-feedback[data-button="right"] .click-feedback__button--right {
-  fill: var(--click-color);
-  stroke: #fff;
-  filter: drop-shadow(0 0 5px var(--click-color));
-}
 @keyframes click-ring { from { opacity: .95; transform: scale(.25); } to { opacity: 0; transform: scale(5.4); } }
 @keyframes click-dot { 0%, 55% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(.4); } }
 @keyframes click-spark { 0% { opacity: 0; transform: rotate(var(--spark-angle)) translateY(-20px) scaleY(.2); } 22% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--spark-angle)) translateY(-43px) scaleY(1); } }
-@keyframes click-mouse-in { from { opacity: 0; transform: scale(.72) translateY(4px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
 @media (prefers-reduced-motion: reduce) {
   .about-portrait-card-inner { transition-duration: .01ms; }
   .binary-streams span { animation: none; }
-  .click-feedback__ring, .click-feedback__dot, .click-feedback__spark, .click-feedback__mouse { animation-duration: .01ms; }
+  .rocket-cursor__flame--outer, .rocket-cursor__flame--inner, .rocket-cursor__trail { animation: none; }
+  .rocket-cursor { transition: none; }
+  .click-feedback__ring, .click-feedback__dot, .click-feedback__spark { animation-duration: .01ms; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .rocket-cursor { display: none; }
 }
