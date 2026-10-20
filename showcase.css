@@ -523,42 +523,34 @@ main { position: relative; z-index: 1; }
 .rocket-cursor.is-visible { opacity: 1; }
 .rocket-cursor__ship {
   position: absolute;
-  top: -39px;
-  left: -30px;
-  width: 60px;
-  height: 78px;
+  top: -44px;
+  left: -36px;
+  width: 72px;
+  height: 88px;
   overflow: visible;
-  filter: drop-shadow(0 0 8px #35e7ff80);
-  transform: rotate(var(--rocket-angle, -.785rad));
-  transform-origin: 30px 39px;
+  filter: drop-shadow(0 0 3px #35e7ff80) drop-shadow(0 0 10px #35e7ff35);
+  transform: rotate(var(--rocket-angle, 0rad));
+  transform-origin: 36px 44px;
 }
 .rocket-cursor__body {
-  fill: #d8f9ff;
-  stroke: #35e7ff;
+  fill: url("#rocket-hull");
+  stroke: #e5faff;
   stroke-linejoin: round;
-  stroke-width: 1.8;
+  stroke-width: 1.2;
 }
-.rocket-cursor__fin { fill: #42cce8; stroke: #baf6ff; stroke-linejoin: round; stroke-width: 1; }
-.rocket-cursor__window { fill: #101c32; stroke: #35e7ff; stroke-width: 2.5; }
-.rocket-cursor__shine { fill: none; stroke: #fff; stroke-linecap: round; stroke-width: 1.5; }
+.rocket-cursor__fin { fill: url("#rocket-fin"); stroke: #baf6ff; stroke-linejoin: round; stroke-width: 1.1; }
+.rocket-cursor__engine { fill: #283c58; stroke: #b8d5e8; stroke-width: 1; }
+.rocket-cursor__panel { fill: none; stroke: #fff; stroke-opacity: .5; stroke-width: 1; }
+.rocket-cursor__seam { fill: none; stroke: #526c83; stroke-width: .8; }
+.rocket-cursor__stripe { fill: none; stroke: #35e7ff; stroke-width: 2; }
+.rocket-cursor__window-frame { fill: #263c59; stroke: #f3fcff; stroke-width: 1.5; }
+.rocket-cursor__window { fill: url("#rocket-glass"); stroke: #45dfff; stroke-width: 1; }
+.rocket-cursor__window-glint { fill: none; stroke: #fff; stroke-linecap: round; stroke-width: 1.2; }
+.rocket-cursor__detail { fill: #35e7ff; }
 .rocket-cursor__flame { transform-box: fill-box; transform-origin: center top; }
-.rocket-cursor__flame--outer { fill: #ff9f43; animation: rocket-flame .18s ease-in-out infinite alternate; }
-.rocket-cursor__flame--inner { fill: #fff2a8; animation: rocket-flame .12s ease-in-out infinite alternate-reverse; }
-.rocket-cursor__trail {
-  position: absolute;
-  top: 20px;
-  left: -3px;
-  width: 6px;
-  height: 12px;
-  border-radius: 50%;
-  background: #35e7ff99;
-  filter: blur(4px);
-  transform: rotate(var(--rocket-angle, -.785rad));
-  transform-origin: 3px -19px;
-  animation: rocket-trail .35s ease-out infinite;
-}
-@keyframes rocket-flame { from { opacity: .7; scale: .82 1; } to { opacity: 1; scale: 1.12 1.15; } }
-@keyframes rocket-trail { 0% { opacity: .75; scale: 1; } 100% { opacity: 0; scale: .3; } }
+.rocket-cursor__flame--outer { fill: url("#rocket-flame"); filter: drop-shadow(0 0 4px #ff873b); animation: rocket-flame .22s ease-in-out infinite alternate; }
+.rocket-cursor__flame--inner { fill: #fff7ce; filter: drop-shadow(0 0 3px #fff1a4); animation: rocket-flame .14s ease-in-out infinite alternate-reverse; }
+@keyframes rocket-flame { from { opacity: .75; scale: .84 1; } to { opacity: 1; scale: 1.08 1.22; } }
 
 .click-feedback {
   --click-color: #35e7ff;
@@ -613,7 +605,7 @@ main { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .about-portrait-card-inner { transition-duration: .01ms; }
   .binary-streams span { animation: none; }
-  .rocket-cursor__flame--outer, .rocket-cursor__flame--inner, .rocket-cursor__trail { animation: none; }
+  .rocket-cursor__flame--outer, .rocket-cursor__flame--inner { animation: none; }
   .rocket-cursor { transition: none; }
   .click-feedback__ring, .click-feedback__dot, .click-feedback__spark { animation-duration: .01ms; }
 }

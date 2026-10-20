@@ -196,28 +196,6 @@ document.addEventListener("click", (event) => {
 const clickFeedbackTemplate = document.querySelector("#click-feedback-template");
 const rocketCursor = document.querySelector(".rocket-cursor");
 let lastPointerPosition;
-let rocketTarget;
-let rocketPosition;
-let rocketFrame;
-
-const updateRocketCursor = () => {
-	rocketFrame = undefined;
-	if (!rocketTarget) return;
-
-	const easing = prefersReducedMotion ? 1 : 0.28;
-	rocketPosition ??= rocketTarget;
-	rocketPosition.x += (rocketTarget.x - rocketPosition.x) * easing;
-	rocketPosition.y += (rocketTarget.y - rocketPosition.y) * easing;
-	const remainingDistance = Math.hypot(rocketTarget.x - rocketPosition.x, rocketTarget.y - rocketPosition.y);
-	if (remainingDistance < 0.5) rocketPosition = { ...rocketTarget };
-
-	rocketCursor.style.setProperty("--rocket-x", `${rocketPosition.x}px`);
-	rocketCursor.style.setProperty("--rocket-y", `${rocketPosition.y}px`);
-	rocketCursor.style.setProperty("--rocket-angle", `${rocketTarget.angle}rad`);
-	rocketCursor.classList.add("is-visible");
-
-	if (remainingDistance >= 0.5) rocketFrame = window.requestAnimationFrame(updateRocketCursor);
-};
 
 document.addEventListener("pointermove", (event) => {
 	if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -225,24 +203,17 @@ document.addEventListener("pointermove", (event) => {
 	const deltaX = lastPointerPosition ? event.clientX - lastPointerPosition.x : 0;
 	const deltaY = lastPointerPosition ? event.clientY - lastPointerPosition.y : 0;
 	const distance = Math.hypot(deltaX, deltaY);
-	const angle = distance > 1 ? Math.atan2(deltaY, deltaX) : rocketTarget?.angle ?? -Math.PI / 4;
-	lastPointerPosition = { x: event.clientX, y: event.clientY };
-	rocketTarget = {
-		x: event.clientX - Math.cos(angle) * 38,
-		y: event.clientY - Math.sin(angle) * 38,
-		angle
-	};
-
-	if (rocketFrame === undefined) rocketFrame = window.requestAnimationFrame(updateRocketCursor);
+	const angle = distance > 1 ? Math.atan2(deltaY, deltaX) : lastPointerPosition?.angle ?? -Math.PI / 2;
+	lastPointerPosition = { x: event.clientX, y: event.clientY, angle };
+	rocketCursor.style.setProperty("--rocket-x", `${event.clientX}px`);
+	rocketCursor.style.setProperty("--rocket-y", `${event.clientY}px`);
+	rocketCursor.style.setProperty("--rocket-angle", `${angle + Math.PI / 2}rad`);
+	rocketCursor.classList.add("is-visible");
 });
 
 document.addEventListener("pointerleave", () => {
 	rocketCursor.classList.remove("is-visible");
 	lastPointerPosition = undefined;
-	rocketTarget = undefined;
-	rocketPosition = undefined;
-	if (rocketFrame !== undefined) window.cancelAnimationFrame(rocketFrame);
-	rocketFrame = undefined;
 });
 
 const showClickFeedback = (event, button) => {

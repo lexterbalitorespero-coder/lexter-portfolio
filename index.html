@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="showcase.css?v=20261020-rocket-cursor" />
-    <script src="script.js?v=20261020-rocket-cursor" defer></script>
+    <link rel="stylesheet" href="showcase.css?v=20261020-realistic-rocket" />
+    <script src="script.js?v=20261020-realistic-rocket" defer></script>
   </head>
   <body>
     <div class="space-backdrop" aria-hidden="true">
@@ -238,15 +238,46 @@ explore();
       </footer>
     </main>
     <div class="rocket-cursor" aria-hidden="true">
-      <svg class="rocket-cursor__ship" viewBox="0 0 60 78" focusable="false">
-        <path class="rocket-cursor__flame rocket-cursor__flame--outer" d="M26 55c-1 8-7 12-3 19 3-2 5-5 7-8 2 3 4 6 7 8 4-7-2-11-3-19Z" />
-        <path class="rocket-cursor__flame rocket-cursor__flame--inner" d="M28 55c0 6-3 9 2 14 5-5 2-8 2-14Z" />
-        <path class="rocket-cursor__body" d="M30 5C22 14 18 26 18 42v5L10 58l12-3c4 4 12 4 16 0l12 3-8-11v-5C42 26 38 14 30 5Z" />
-        <path class="rocket-cursor__fin" d="m18 42-8 16 12-3M42 42l8 16-12-3" />
-        <circle class="rocket-cursor__window" cx="30" cy="30" r="5.5" />
-        <path class="rocket-cursor__shine" d="M27 29a3 3 0 0 1 3-3" />
+      <svg class="rocket-cursor__ship" viewBox="0 0 72 88" focusable="false">
+        <defs>
+          <linearGradient id="rocket-hull" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#7289a8" />
+            <stop offset=".22" stop-color="#f4fbff" />
+            <stop offset=".52" stop-color="#b9d6e9" />
+            <stop offset=".78" stop-color="#f7fdff" />
+            <stop offset="1" stop-color="#7187a4" />
+          </linearGradient>
+          <linearGradient id="rocket-fin" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#9ceeff" />
+            <stop offset="1" stop-color="#227ba7" />
+          </linearGradient>
+          <linearGradient id="rocket-flame" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fff9c7" />
+            <stop offset=".38" stop-color="#ffb547" />
+            <stop offset="1" stop-color="#ff5a36" stop-opacity="0" />
+          </linearGradient>
+          <radialGradient id="rocket-glass" cx=".32" cy=".25" r=".8">
+            <stop offset="0" stop-color="#d6fbff" />
+            <stop offset=".34" stop-color="#62dcff" />
+            <stop offset="1" stop-color="#18396c" />
+          </radialGradient>
+        </defs>
+        <path class="rocket-cursor__flame rocket-cursor__flame--outer" d="M27 61c-1 9-8 16-3 25 3-2 6-6 7-10 2 4 4 7 7 10 5-9-2-16-3-25Z" />
+        <path class="rocket-cursor__flame rocket-cursor__flame--inner" d="M32 62c-1 6-4 11 1 17 5-6 2-11 1-17Z" />
+        <path class="rocket-cursor__engine" d="M27 57h18l-3 9H30Z" />
+        <path class="rocket-cursor__fin" d="m24 43-12 18 17-5M48 43l12 18-17-5" />
+        <path class="rocket-cursor__body" d="M36 5C26 15 21 30 21 47v13c8 5 22 5 30 0V47C51 30 46 15 36 5Z" />
+        <path class="rocket-cursor__panel" d="M36 10v45" />
+        <path class="rocket-cursor__seam" d="M22 48h28M23 55h26" />
+        <path class="rocket-cursor__stripe" d="M22 44h28" />
+        <path class="rocket-cursor__window-frame" d="M36 23a9 9 0 0 0-9 9v4h18v-4a9 9 0 0 0-9-9Z" />
+        <path class="rocket-cursor__window" d="M36 26a6 6 0 0 0-6 6v1h12v-1a6 6 0 0 0-6-6Z" />
+        <path class="rocket-cursor__window-glint" d="M33 28a3 3 0 0 1 3-1" />
+        <circle class="rocket-cursor__detail" cx="25" cy="40" r="1" />
+        <circle class="rocket-cursor__detail" cx="47" cy="40" r="1" />
+        <circle class="rocket-cursor__detail" cx="27" cy="52" r=".8" />
+        <circle class="rocket-cursor__detail" cx="45" cy="52" r=".8" />
       </svg>
-      <span class="rocket-cursor__trail"></span>
     </div>
     <template id="click-feedback-template">
       <div class="click-feedback" aria-hidden="true">
