@@ -245,6 +245,18 @@ if ("IntersectionObserver" in window) {
 	revealSections.forEach((section) => section.classList.add("is-revealed"));
 }
 
+const aboutCopy = document.querySelector(".about-copy");
+if (aboutCopy && "IntersectionObserver" in window) {
+	aboutCopy.classList.add("is-reveal-pending");
+	const aboutCopyObserver = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			aboutCopy.classList.toggle("is-revealed", entry.isIntersecting);
+			aboutCopy.classList.toggle("is-reveal-pending", !entry.isIntersecting);
+		});
+	}, { threshold: 0.2 });
+	aboutCopyObserver.observe(aboutCopy);
+}
+
 const deterministicRandom = (seed) => {
 	const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
 	return value - Math.floor(value);
