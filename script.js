@@ -5,7 +5,6 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const soundToggle = document.querySelector(".sound-toggle");
 let soundEnabled = false;
 let soundContext;
-let stopAmbientMusic;
 
 const playTone = ({ frequency, endFrequency = frequency, duration, volume, type = "sine", startAt = 0 }) => {
 	if (!soundEnabled || !soundContext) return;
@@ -47,100 +46,12 @@ const playSound = (sound) => {
 	}
 };
 
-const startAmbientMusic = () => {
-	const musicGain = soundContext.createGain();
-	const oscillators = [];
-	const progression = [
-		[146.83, 220, 261.63, 329.63],
-		[130.81, 196, 246.94, 329.63],
-		[116.54, 174.61, 220, 293.66],
-		[87.31, 174.61, 220, 261.63]
-	];
-	const sequence = [293.66, 349.23, 440, 523.25, 587.33, 523.25, 440, 349.23];
-	const sequencePattern = [0, 2, 4, 2, 1, 3, 5, 3, 0, 2, 4, 6, 5, 3, 1, 3];
-	let chordIndex = 0;
-	let sequenceStep = 0;
-
-	musicGain.gain.setValueAtTime(0.0001, soundContext.currentTime);
-	musicGain.gain.exponentialRampToValueAtTime(0.06, soundContext.currentTime + 2);
-	musicGain.connect(soundContext.destination);
-
-	progression[0].forEach((frequency, index) => {
-		const voiceGain = soundContext.createGain();
-		voiceGain.gain.value = index === 0 ? 0.14 : 0.07;
-		voiceGain.connect(musicGain);
-
-		[frequency - 0.7, frequency + 0.7].forEach((detunedFrequency) => {
-			const oscillator = soundContext.createOscillator();
-			oscillator.type = index === 0 ? "triangle" : "sawtooth";
-			oscillator.frequency.value = detunedFrequency;
-			oscillator.connect(voiceGain);
-			oscillator.start();
-			oscillators.push(oscillator);
-		});
-	});
-
-	const sequenceTimer = window.setInterval(() => {
-		const startTime = soundContext.currentTime + 0.02;
-		const note = soundContext.createOscillator();
-		const noteGain = soundContext.createGain();
-		const noteFrequency = sequence[sequencePattern[sequenceStep % sequencePattern.length]];
-		note.type = "triangle";
-		note.frequency.setValueAtTime(noteFrequency, startTime);
-		noteGain.gain.setValueAtTime(0.0001, startTime);
-		noteGain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.012);
-		noteGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.19);
-		note.connect(noteGain);
-		noteGain.connect(musicGain);
-		note.start(startTime);
-		note.stop(startTime + 0.2);
-
-		if (sequenceStep % 4 === 0) {
-			const bass = soundContext.createOscillator();
-			const bassGain = soundContext.createGain();
-			bass.type = "sine";
-			bass.frequency.setValueAtTime(110, startTime);
-			bass.frequency.exponentialRampToValueAtTime(48, startTime + 0.16);
-			bassGain.gain.setValueAtTime(0.0001, startTime);
-			bassGain.gain.exponentialRampToValueAtTime(0.015, startTime + 0.008);
-			bassGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.18);
-			bass.connect(bassGain);
-			bassGain.connect(musicGain);
-			bass.start(startTime);
-			bass.stop(startTime + 0.19);
-		}
-
-		sequenceStep += 1;
-	}, 250);
-
-	const progressionTimer = window.setInterval(() => {
-		chordIndex = (chordIndex + 1) % progression.length;
-		const startTime = soundContext.currentTime;
-		progression[chordIndex].forEach((frequency, index) => {
-			const voiceOscillators = oscillators.slice(index * 2, index * 2 + 2);
-			voiceOscillators.forEach((oscillator, voiceIndex) => {
-				oscillator.frequency.setTargetAtTime(frequency + (voiceIndex === 0 ? -0.7 : 0.7), startTime, 1.8);
-			});
-		});
-	}, 8000);
-
-	return () => {
-		window.clearInterval(sequenceTimer);
-		window.clearInterval(progressionTimer);
-		const stopTime = soundContext.currentTime + 0.7;
-		musicGain.gain.cancelScheduledValues(soundContext.currentTime);
-		musicGain.gain.setTargetAtTime(0.0001, soundContext.currentTime, 0.12);
-		oscillators.forEach((oscillator) => oscillator.stop(stopTime));
-	};
-};
-
 const enableSound = () => {
 	if (soundEnabled || !soundContext || soundContext.state !== "running") return false;
 
 	soundEnabled = true;
-	stopAmbientMusic = startAmbientMusic();
-	soundToggle.textContent = "Music: ON";
-	soundToggle.setAttribute("aria-label", "Turn background music and sound effects off");
+	soundToggle.textContent = "Sound: ON";
+	soundToggle.setAttribute("aria-label", "Turn sound effects off");
 	soundToggle.setAttribute("aria-pressed", "true");
 	playSound("grant");
 	return true;
@@ -149,8 +60,8 @@ const enableSound = () => {
 const startSound = () => {
 	if (soundEnabled) return Promise.resolve(true);
 	if (!window.AudioContext) {
-		soundToggle.textContent = "Music unavailable";
-		soundToggle.setAttribute("aria-label", "Background music is unavailable in this browser");
+		soundToggle.textContent = "Sound unavailable";
+		soundToggle.setAttribute("aria-label", "Sound effects are unavailable in this browser");
 		return Promise.resolve(false);
 	}
 
@@ -159,32 +70,32 @@ const startSound = () => {
 	return soundContext.resume()
 		.then(() => enableSound())
 		.catch((error) => {
-			console.error("Unable to start portfolio music.", error);
+			console.error("Unable to start portfolio sound effects.", error);
 			return false;
 		});
 };
 
 const updateSoundToggle = (enabled) => {
 	soundEnabled = enabled;
-	soundToggle.textContent = enabled ? "Music: ON" : "Music: OFF";
+	soundToggle.textContent = enabled ? "Sound: ON" : "Sound: OFF";
 	soundToggle.setAttribute("aria-label", enabled
-		? "Turn background music and sound effects off"
-		: "Turn background music and sound effects on");
+		? "Turn sound effects off"
+		: "Turn sound effects on");
 	soundToggle.setAttribute("aria-pressed", String(enabled));
 };
 
-const unlockMusicOnInteraction = (event) => {
+const unlockAudioOnInteraction = (event) => {
 	if (event.target.closest(".sound-toggle")) return;
 	void startSound();
 };
 
-document.addEventListener("pointerdown", unlockMusicOnInteraction, { capture: true });
-document.addEventListener("keydown", unlockMusicOnInteraction, { capture: true });
+document.addEventListener("pointerdown", unlockAudioOnInteraction, { capture: true });
+document.addEventListener("keydown", unlockAudioOnInteraction, { capture: true });
 
 const attemptAutoplay = () => {
 	if (!window.AudioContext) {
-		soundToggle.textContent = "Music unavailable";
-		soundToggle.setAttribute("aria-label", "Background music is unavailable in this browser");
+		soundToggle.textContent = "Sound unavailable";
+		soundToggle.setAttribute("aria-label", "Sound effects are unavailable in this browser");
 		return;
 	}
 
@@ -192,10 +103,10 @@ const attemptAutoplay = () => {
 	soundContext.resume()
 		.then(() => enableSound())
 		.catch((error) => {
-			if (error.name !== "NotAllowedError") console.error("Unable to autoplay portfolio music.", error);
+			if (error.name !== "NotAllowedError") console.error("Unable to autoplay portfolio sound effects.", error);
 		});
 	if (soundContext.state !== "running") {
-		soundToggle.textContent = "Music: CLICK TO START";
+		soundToggle.textContent = "Sound: CLICK TO START";
 	}
 };
 
@@ -206,8 +117,6 @@ soundToggle.addEventListener("click", async () => {
 	}
 
 	updateSoundToggle(false);
-	stopAmbientMusic();
-	stopAmbientMusic = undefined;
 	const contextToClose = soundContext;
 	window.setTimeout(() => void contextToClose.close(), 700);
 	soundContext = undefined;
