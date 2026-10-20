@@ -490,10 +490,10 @@ main { position: relative; z-index: 1; }
 .about-portrait-card:focus-visible { outline: 2px solid var(--blue); outline-offset: -4px; }
 .about-portrait-card-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
 .about-portrait-face { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.about-portrait-front { transform: rotateY(0deg); }
-.about-portrait { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.about-portrait-front { transform: rotateY(0deg); background: radial-gradient(ellipse at 50% 20%, #087d9c4d, transparent 58%), linear-gradient(145deg, #102b3b, #080d18); }
+.about-portrait { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; mix-blend-mode: multiply; }
 .about-portrait-back { display: grid; align-content: center; justify-items: center; gap: 14px; padding: 24px; transform: rotateY(180deg); color: #eafaff; background: radial-gradient(ellipse at 50% 20%, #087d9c66, transparent 58%), linear-gradient(145deg, #102b3b, #080d18); font: 500 clamp(11px, 1.3vw, 15px)/1.6 var(--mono); letter-spacing: .12em; text-align: center; }
-.about-portrait-back > .binary-streams { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: space-around; overflow: hidden; opacity: .72; pointer-events: none; }
+.about-portrait-face > .binary-streams { position: absolute; inset: 0; z-index: 0; display: flex; justify-content: space-around; overflow: hidden; opacity: .72; pointer-events: none; }
 .binary-streams span { position: relative; z-index: 0; flex: 0 0 auto; color: #51d9f4a8; font: 500 clamp(10px, 1vw, 13px)/1 var(--mono); letter-spacing: .32em; writing-mode: vertical-rl; text-orientation: upright; white-space: nowrap; animation: binary-fall 9s linear infinite; }
 .binary-streams span:nth-child(2n) { animation-delay: -3s; animation-duration: 11s; }
 .binary-streams span:nth-child(3n) { animation-delay: -6s; animation-duration: 13s; }
