@@ -481,3 +481,6 @@ main { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .section.is-reveal-pending, .section.is-revealed { opacity: 1; transform: none; transition: none; }
 }
+
+.about-details { overflow: hidden; padding: 0; }
+.about-portrait { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 35%; }
