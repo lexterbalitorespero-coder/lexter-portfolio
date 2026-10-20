@@ -196,6 +196,31 @@ document.addEventListener("click", (event) => {
 const clickFeedbackTemplate = document.querySelector("#click-feedback-template");
 const rocketCursor = document.querySelector(".rocket-cursor");
 let lastPointerPosition;
+let lastSmokeEmission = 0;
+
+const emitRocketSmoke = (x, y, angle, timestamp) => {
+	if (prefersReducedMotion || timestamp - lastSmokeEmission < 45) return;
+	lastSmokeEmission = timestamp;
+
+	const exhaustX = -Math.sin(angle);
+	const exhaustY = Math.cos(angle);
+	const crossX = Math.cos(angle);
+	const crossY = Math.sin(angle);
+	const engineOffset = 19;
+	const offset = Math.random() * 8 - 4;
+	const particle = document.createElement("span");
+	particle.className = "rocket-smoke";
+	particle.style.left = `${x + exhaustX * engineOffset + crossX * offset}px`;
+	particle.style.top = `${y + exhaustY * engineOffset + crossY * offset}px`;
+	particle.style.setProperty("--smoke-dx", `${exhaustX * (12 + Math.random() * 20) + crossX * (Math.random() * 12 - 6)}px`);
+	particle.style.setProperty("--smoke-dy", `${exhaustY * (12 + Math.random() * 20) + crossY * (Math.random() * 12 - 6)}px`);
+	particle.style.setProperty("--smoke-size", `${5 + Math.random() * 6}px`);
+	document.body.append(particle);
+
+	const smokeParticles = document.querySelectorAll(".rocket-smoke");
+	if (smokeParticles.length > 36) smokeParticles[0].remove();
+	window.setTimeout(() => particle.remove(), 900);
+};
 
 document.addEventListener("pointermove", (event) => {
 	if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -209,6 +234,7 @@ document.addEventListener("pointermove", (event) => {
 	rocketCursor.style.setProperty("--rocket-y", `${event.clientY}px`);
 	rocketCursor.style.setProperty("--rocket-angle", `${angle + Math.PI / 2}rad`);
 	rocketCursor.classList.add("is-visible");
+	emitRocketSmoke(event.clientX, event.clientY, angle + Math.PI / 2, event.timeStamp);
 });
 
 document.addEventListener("pointerleave", () => {

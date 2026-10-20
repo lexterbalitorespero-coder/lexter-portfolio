@@ -551,6 +551,25 @@ main { position: relative; z-index: 1; }
 .rocket-cursor__flame--outer { fill: url("#rocket-flame"); filter: drop-shadow(0 0 4px #ff873b); animation: rocket-flame .22s ease-in-out infinite alternate; }
 .rocket-cursor__flame--inner { fill: #fff7ce; filter: drop-shadow(0 0 3px #fff1a4); animation: rocket-flame .14s ease-in-out infinite alternate-reverse; }
 @keyframes rocket-flame { from { opacity: .75; scale: .84 1; } to { opacity: 1; scale: 1.08 1.22; } }
+.rocket-smoke {
+  --smoke-dx: 0px;
+  --smoke-dy: 18px;
+  position: fixed;
+  z-index: 19;
+  width: var(--smoke-size);
+  height: var(--smoke-size);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #f3fbffb8 0, #a9c1d883 40%, #687b9b35 72%, #53637d00 100%);
+  filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  animation: rocket-smoke-drift .85s ease-out forwards;
+}
+@keyframes rocket-smoke-drift {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.45); }
+  18% { opacity: .58; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--smoke-dx)), calc(-50% + var(--smoke-dy))) scale(1.8); }
+}
 
 .click-feedback {
   --click-color: #35e7ff;
@@ -606,6 +625,7 @@ main { position: relative; z-index: 1; }
   .about-portrait-card-inner { transition-duration: .01ms; }
   .binary-streams span { animation: none; }
   .rocket-cursor__flame--outer, .rocket-cursor__flame--inner { animation: none; }
+  .rocket-smoke { animation-duration: .01ms; }
   .rocket-cursor { transition: none; }
   .click-feedback__ring, .click-feedback__dot, .click-feedback__spark { animation-duration: .01ms; }
 }
