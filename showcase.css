@@ -634,3 +634,13 @@ main { position: relative; z-index: 1; }
 @media (hover: none), (pointer: coarse) {
   .rocket-cursor { display: none; }
 }
+
+.certificate-card, .project-feature {
+  border-color: #4ba8ff85;
+  box-shadow: inset 0 0 0 1px #4ba8ff24, 0 0 12px #168bff2e, 0 0 28px #168bff18, 0 16px 36px #03070a55;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.certificate-card:hover, .project-feature:hover {
+  border-color: #74c0ff;
+  box-shadow: inset 0 0 0 1px #74c0ff55, 0 0 18px #168bff70, 0 0 38px #168bff40, 0 16px 36px #03070a55;
+}
