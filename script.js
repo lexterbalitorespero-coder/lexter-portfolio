@@ -62,7 +62,7 @@ const startAmbientMusic = () => {
 	let sequenceStep = 0;
 
 	musicGain.gain.setValueAtTime(0.0001, soundContext.currentTime);
-	musicGain.gain.exponentialRampToValueAtTime(0.16, soundContext.currentTime + 2);
+	musicGain.gain.exponentialRampToValueAtTime(0.06, soundContext.currentTime + 2);
 	musicGain.connect(soundContext.destination);
 
 	progression[0].forEach((frequency, index) => {
@@ -102,7 +102,7 @@ const startAmbientMusic = () => {
 			bass.frequency.setValueAtTime(110, startTime);
 			bass.frequency.exponentialRampToValueAtTime(48, startTime + 0.16);
 			bassGain.gain.setValueAtTime(0.0001, startTime);
-			bassGain.gain.exponentialRampToValueAtTime(0.06, startTime + 0.008);
+			bassGain.gain.exponentialRampToValueAtTime(0.015, startTime + 0.008);
 			bassGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.18);
 			bass.connect(bassGain);
 			bassGain.connect(musicGain);
